@@ -3,9 +3,11 @@
 import { useState } from "react";
 
 const useWordle = (solution) => {
-    const [currentGuess, setCurrentGuess] = useState('')
-    const [turn, setTurn] = useState(0)
-    const [history, setHistory] = useState([]) // each guess is a string
+    const [currentGuess, setCurrentGuess] = useState('') // track value of current user input
+    const [turn, setTurn] = useState(0) // track the turn (5 turns, 6 total guesses)
+    const [history, setHistory] = useState([]) // track the history so users can't guess the same word again
+    const [guesses, setGuesses] = useState([...Array(6)]) // track the formatted guesses to display the game board
+    const [isCorrect, setIsCorrect] = useState(false) // track whether or not the user has won
 
     // format a guess into an array of letter objects
     // e.g. [{key: 'a', color: 'yellow'}]
@@ -37,6 +39,31 @@ const useWordle = (solution) => {
         return formattedGuess
     }
 
+    // add a new guess to the guesses state
+    // update the isCorrect state if the guess is correct
+    // add one to the turn state
+    const addNewGuess = (formattedGuess) => {
+        if (currentGuess === solution) {
+            setIsCorrect(true);
+        }
+
+        setGuesses((prevGuesses) => {
+            let newGuesses = [...prevGuesses]
+            newGuesses[turn] = formattedGuess
+            return newGuesses
+        })
+
+        setHistory((prevHistory) => {
+            return [...prevHistory, currentGuess]
+        })
+
+        setTurn((prevTurn) => {
+            return prevTurn + 1
+        })
+
+        setCurrentGuess('')
+    }
+
     // handle keyup event to keep track of the guess
     // if the user presses enter, add the new guess
     const handleKeyup = ({ key }) => {
@@ -62,7 +89,7 @@ const useWordle = (solution) => {
 
             // format an acceptable guess to add to history
             const formatted = formatGuess()
-            console.log(formatted)
+            addNewGuess(formatted)
         }
 
         // remove letters from guess
@@ -85,7 +112,7 @@ const useWordle = (solution) => {
         }
     }
 
-    return { currentGuess, handleKeyup}
+    return { currentGuess, turn, guesses, isCorrect, handleKeyup }
 }
 
 export default useWordle;
