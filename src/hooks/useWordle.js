@@ -44,7 +44,7 @@ const useWordle = (solution) => {
     // add one to the turn state
     const addNewGuess = (formattedGuess) => {
         if (currentGuess === solution) {
-            setIsCorrect(true);
+            setIsCorrect(true)
         }
 
         setGuesses((prevGuesses) => {
@@ -115,4 +115,4 @@ const useWordle = (solution) => {
     return { currentGuess, turn, guesses, isCorrect, handleKeyup }
 }
 
-export default useWordle;
+export default useWordle
