@@ -8,6 +8,7 @@ const useWordle = (solution) => {
     const [history, setHistory] = useState([]) // track the history so users can't guess the same word again
     const [guesses, setGuesses] = useState([...Array(6)]) // track the formatted guesses to display the game board
     const [isCorrect, setIsCorrect] = useState(false) // track whether or not the user has won
+    const [usedKeys, setUsedKeys] = useState({}) // {a: 'green', b: 'yellow'}
 
     // format a guess into an array of letter objects
     // e.g. [{key: 'a', color: 'yellow'}]
@@ -61,6 +62,31 @@ const useWordle = (solution) => {
             return prevTurn + 1
         })
 
+        setUsedKeys((prevUsedKeys) => {
+            let newKeys = {...prevUsedKeys}
+
+            formattedGuess.forEach((letter) => {
+                const currentColor = newKeys[letter.key]
+                
+                if (letter.color === 'green') {
+                    newKeys[letter.key] = 'green'
+                    return
+                }
+
+                if (letter.color === 'yellow' && currentColor !== 'green') {
+                    newKeys[letter.key] = 'yellow'
+                    return
+                }
+
+                if (letter.color === 'grey' && currentColor !== 'green' && currentColor !== 'yellow') {
+                    newKeys[letter.key] = 'grey'
+                    return
+                }
+            })
+
+            return newKeys
+        })
+
         setCurrentGuess('')
     }
 
@@ -112,7 +138,15 @@ const useWordle = (solution) => {
         }
     }
 
-    return { currentGuess, turn, guesses, isCorrect, handleKeyup }
+    const handleKeypadClick = ({ target }) => {
+        if (currentGuess.length < 5) {
+            setCurrentGuess((prevGuess) => {
+                return prevGuess + target.innerHTML
+            })
+        }
+    }
+
+    return { currentGuess, turn, guesses, isCorrect, usedKeys, handleKeyup, handleKeypadClick }
 }
 
 export default useWordle
