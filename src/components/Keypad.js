@@ -4,6 +4,8 @@ export default function Keypad({ usedKeys, onKeypadClick }) {
     const [letters, setLetters] = useState(null)
 
     useEffect(() => {
+        window.addEventListener('onClick', onKeypadClick)
+
         fetch('http://localhost:3001/letters')
             .then(response => response.json())
             .then(json => {
