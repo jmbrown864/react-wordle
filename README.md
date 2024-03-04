@@ -26,6 +26,6 @@
 - [x] Show current guess as user types
 - [x] Animate game tiles when user submits a guess
 - [x] Animate game tiles as user enters a current guess
-- [ ] Create a keypad for entering guesses
-- [ ] Colorize keypad based on guesses
-- [ ] Alerts for end game
+- [x] Create a keypad for entering guesses
+- [x] Colorize keypad based on guesses
+- [x] Alerts for end game
