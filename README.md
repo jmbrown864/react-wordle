@@ -25,8 +25,15 @@
 
 ## To Run
 ```
+json-server ./data/db.json --port 3001
 npm run start
 ```
+
+### Packages:
+- [json-server](https://www.npmjs.com/package/json-server)
+
+## Screenshots
+![](react-wordle.gif)
 
 ## Author: Jasmine Brown
 [LinkedIn](https://linkedin.com/in/jmbrown864/)
