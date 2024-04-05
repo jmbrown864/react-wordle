@@ -1,5 +1,9 @@
-# React-Wordle
-## How to Play:
+<h1 align="center">React Wordle</h1>
+
+## Project Description
+*A recreation of the New York Times' classic WORDLE game.*
+
+### How to Play:
 
 1. **Guess a Word**: Each round, try to guess a five-letter word. Type your guess into the input field provided.
 
@@ -14,18 +18,15 @@
 
 5. **Win the Game**: You have six attempts to guess the word. If you guess it correctly within the allotted attempts, you win!
 
-## Implementation Tasks
-- [x] Add data for possible solution words
-- [x] Set up JSON server
-- [x] Create `useWordle` hook to manage gampeplay logic
-- [x] Track user's current guess
-- [x] Format and check a guess when a user submits word
-- [x] Manage gameplay logic for additional guesses
-- [x] Create a grid for guesses
-- [x] Show colorized past guesses on game grid
-- [x] Show current guess as user types
-- [x] Animate game tiles when user submits a guess
-- [x] Animate game tiles as user enters a current guess
-- [x] Create a keypad for entering guesses
-- [x] Colorize keypad based on guesses
-- [x] Alerts for end game
+## Built With:
+- React
+- HTML
+- CSS
+
+## To Run
+```
+npm run start
+```
+
+## Author: Jasmine Brown
+[LinkedIn](https://linkedin.com/in/jmbrown864/)
